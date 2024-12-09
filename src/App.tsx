@@ -10,10 +10,11 @@ function App() {
     <h1>City Explorer</h1>
     <div>
       <ListGroup/>
-      <ListGroup/>
+    
     </div>  
     </>
   )
 }
+
 
 export default App
