@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   const [cities, setCities] = useState<City[]>(loadCitiesFormLocalStorage());
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectCity, setselectedCity] = useState<number | null>(null);
+  const [selectedCity, setselectedCity] = useState<number | null>(null);
   const [newCityName, setNewCityName] = useState<string>("");
   const [newCityDescription, setNewCityDescription] = useState<string>("");
 
@@ -55,7 +55,7 @@ const App: React.FC = () => {
 
   return (
     <div className="container mt-4">
-      <h1 className="text-center mb-4"></h1>
+      <h1 className="text-center mb-4">City Explorer</h1>
 
       {/* Search Bar */}
       <div className="mb-4 d-flex justify-content-center">
@@ -72,7 +72,7 @@ const App: React.FC = () => {
       items={filteredCities}
       heading="Available Cities"
       onItemClick={(index) => handleCityClick(index)}
-      selectedIndex={SelectedCity}
+      selectedIndex={selectedCity}
       />
 
       {/* City Description */}
@@ -83,8 +83,57 @@ const App: React.FC = () => {
           </div>
       )}
 
-      {/*Add New City Form*/}    
-  )
-}
+      {/*Add New City Form*/}
+      <div className="card mt-4 p-3">
+        <h1>Add a New City</h1>
+        <div className="mb-3">
+          <input
+          type="text"
+          placeholder="City Name"
+          value={newCityName}
+          onChange={(e) => setNewCityName(e.target.value)}
+          className="form-control w-50"/>
+        </div>
+        <div className="mb-3">
+          <input
+          type="text"
+          placeholder="City Description"
+          value={newCityDescription}
+          onChange={(e) => setNewCityDescription(e.target.value)}
+          className="form-control w-50"/>
+        </div>
+        </div> 
+
+        {/* Add City Button Outside the Form */}
+        <div className="d-flex justify-content-center mb-3">
+          <button
+          onClick={handleAddCity}
+          className="btn btn-success"
+          style={{
+            padding: "0.5rem 1rem",
+            display: "inline-block",
+            margin: "12px",
+            width: "auto",
+          }}>
+            Add City
+          </button>
+        </div>
+
+        {/* Reset Selection Button */}
+        <div className="d-flex justify-content-center mb-3">
+          <button
+            onClick={handleResetSelection}
+            className="btn btn-danger"
+            style={{
+              padding: "0.5rem 1rem",
+              display: "inline-block",
+              width: "auto",
+            }}>
+              Reset City Selection
+          </button>
+        </div>
+      </div>
+  );
+};
 
 export default App;
